@@ -18,8 +18,19 @@ print('\n')
 
 print('例2 ')
 def h():
-    print('Wen Chuan')
+    print('Wen Chuan\n')
     yield 5
     print('Fighting!')
 c=h()
 c.__next__()
+
+print('send(msg)与next()用法 ')
+def h():
+    print('Wen Chuan',end=' ')
+    m=yield 5 #Fighting!
+    print(m)
+    d=yield 12
+    print('We are together!')
+c=h()
+c.__next__() #相当于c.send(None)
+c.send('Fighting!')#(yield 5)表达式被赋予了'Fighting!'
