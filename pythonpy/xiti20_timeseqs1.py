@@ -1,3 +1,4 @@
+#计时模块测试优化1
 import sys,xiti20_mytimer1
 reps=10000
 repslist=range(reps)

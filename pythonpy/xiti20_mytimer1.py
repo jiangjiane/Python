@@ -1,4 +1,4 @@
-#计时模块优化方案
+#计时模块优化方案1
 import time,sys
 if sys.platform[:3]=='win':
     timefunc=time.clock
