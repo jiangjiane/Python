@@ -14,3 +14,11 @@ x.display()
 y.display()
 x.data="New value"
 x.display()
+
+class SecondClass(FirstClass):
+    def display(self):
+        print('Current value = "%s"'%self.data)
+
+z=SecondClass()
+z.setdata(42)
+z.display()
