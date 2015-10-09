@@ -13,27 +13,19 @@ class Person:
     def __str__(self):
         return '[Person:%s,%s]'%(self.name,self.pay)
 
-class Manager(Person):  #类继承
+class Manager:       #类的组合嵌套
     def __init__(self,name,pay):
-        Person.__init__(self,name,'mgr',pay)
+        self.person=Person(name,'mgr',pay)
     """
     def giveRaise(self,percent,bonus=.10):
         self.pay=int(self.pay*(1+percent+bonus))
     """
     def giveRaise(self,percent,bonus=.10):
-        Person.giveRaise(self,percent+bonus)
-
-class Department:
-    def __init__(self,*args):
-        self.members=list(args)
-    def addMember(self,person):
-        self.members.append(person)
-    def giveRaises(self,percent):
-        for person in self.members:
-            person.giveRaise(percent)
-    def showAll(self):
-        for person in self.members:
-            print(person)
+        self.person.giveRaise(percent+bonus)
+    def __getattr__(self,attr):
+        return getattr(self.person,attr)
+    def __str__(self):
+        return str(self.person)
 
 if __name__=='__main__':
     bob=Person('Bon Smith')
@@ -51,7 +43,3 @@ if __name__=='__main__':
     for object in (bob,sue,tom):
         object.giveRaise(.10)
         print(object)
-    development=Department(bob,sue)
-    development.addMember(tom)
-    development.giveRaises(.10)
-    development.showAll()
